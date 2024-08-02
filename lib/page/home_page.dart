@@ -47,7 +47,6 @@ class _HomePageState extends State<HomePage> {
             itemCount: playlist.length,
             itemBuilder: (context, index) {
               final Song song = playlist[index];
-
               return ListTile(
                 contentPadding: EdgeInsets.all(4),
                 title: Text(song.songName, style: GoogleFonts.poppins()),
@@ -55,7 +54,6 @@ class _HomePageState extends State<HomePage> {
                 leading: Container(
                   height: 50,
                   width: 50,
-
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     image: DecorationImage(image: AssetImage(song.albumArtImagePath), fit: BoxFit.cover)
