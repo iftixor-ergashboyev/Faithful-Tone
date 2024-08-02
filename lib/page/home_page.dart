@@ -55,6 +55,7 @@ class _HomePageState extends State<HomePage> {
                 leading: Container(
                   height: 50,
                   width: 50,
+
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
                     image: DecorationImage(image: AssetImage(song.albumArtImagePath), fit: BoxFit.cover)
