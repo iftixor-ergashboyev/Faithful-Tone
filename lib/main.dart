@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:player/page/home_page.dart';
+import 'package:player/page/access.dart';
+import 'package:player/themes/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const Player());
+  runApp(
+    ChangeNotifierProvider(create: (context) => ThemeProvider(),
+    child: const Player(),
+    )
+  );
 }
 class Player extends StatelessWidget {
   const Player({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: Access(),
+      theme: Provider.of<ThemeProvider>(context).themeData
     );
   }
 }
