@@ -12,7 +12,7 @@ class PlaylistProvider extends ChangeNotifier {
       ),
 
       Song(
-          songName: "Verses from the Holy Qur’an without effects",
+          songName: "Holy Qur’an without effects",
           artistName: "Hussein Al-Azzam",
           albumArtImagePath: 'assets/images/2.jpg',
           audioPath: 'assets/audio/2.mp3'
@@ -40,7 +40,7 @@ class PlaylistProvider extends ChangeNotifier {
       ),
 
       Song(
-          songName: "Readers' voices without effects",
+          songName: "Readers' voices",
           artistName: "-",
           albumArtImagePath: 'assets/images/6.jpg',
           audioPath: 'assets/audio/6.mp3'
