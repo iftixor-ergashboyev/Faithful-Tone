@@ -18,6 +18,7 @@ class _SongPageState extends State<SongPage> {
     return Consumer<PlaylistProvider>(
       builder: (context, value, child) {
 
+
         final playlist =value.playlist;
 
         final currentSong = playlist[value.currentSongIndex ?? 0];
