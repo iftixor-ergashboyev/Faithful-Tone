@@ -6,13 +6,20 @@ import 'package:player/models/playlist_provider.dart';
 import 'package:provider/provider.dart';
 
 class SongPage extends StatefulWidget {
-  const SongPage({super.key});
+   SongPage({super.key});
 
   @override
   State<SongPage> createState() => _SongPageState();
 }
 
 class _SongPageState extends State<SongPage> {
+  String formatTime(Duration duration) {
+    String twoDigitSeconds = duration.inSeconds.remainder(60).toString().padLeft(2, '0');
+    String formattedTime = "${duration.inMinutes} : $twoDigitSeconds";
+
+    return formattedTime;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<PlaylistProvider>(
@@ -80,13 +87,13 @@ class _SongPageState extends State<SongPage> {
                       Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: const Row(
+                            padding: EdgeInsets.symmetric(horizontal: 25),
+                            child:  Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("0:00"),
+                                Text(formatTime(value.currentDuration)),
                                 Icon(CupertinoIcons.shuffle),
-                                Text("0:00")
+                                Text(formatTime(value.currentDuration))
                               ],
                             ),
                           ),
@@ -96,9 +103,15 @@ class _SongPageState extends State<SongPage> {
                             ),
                             child: Slider(
                                 min: 0,
-                                max: 100,
-                                value: 50,
-                                onChanged: (value) {}
+                                activeColor: Colors.green,
+                                max: value.totalDuration.inSeconds.toDouble(),
+                                value: value.currentDuration.inSeconds.toDouble(),
+                                onChanged: (double double) {
+
+                                },
+                                onChangeEnd: (double) {
+                               value.seek(Duration(seconds: double.toInt()));
+                          }
                             ),
                           )
                         ],
@@ -108,7 +121,7 @@ class _SongPageState extends State<SongPage> {
                         children: [
                           Expanded(
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: value.playPreviousSong,
                                 child: MyBox(
                                   child: Icon(Icons.skip_previous_rounded),
                                 ),
@@ -118,16 +131,16 @@ class _SongPageState extends State<SongPage> {
                           Expanded(
                               flex: 2,
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: value.pauseOrResume,
                                 child: MyBox(
-                                  child: Icon(Icons.play_arrow),
+                                  child: Icon(value.isPlaying ? Icons.pause: Icons.play_arrow),
                                 ),
                               )
                           ),
                           SizedBox(width: 20),
                           Expanded(
                               child: GestureDetector(
-                                onTap: () {},
+                                onTap: value.playNextSong,
                                 child: MyBox(
                                   child: Icon(Icons.skip_next),
                                 ),
